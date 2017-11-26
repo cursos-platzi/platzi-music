@@ -7,17 +7,21 @@
 </template>
 
 <script>
+import getArtists from './api'
+
 export default {
   name: 'app',
   data () {
     return {
-      artists: [
-        {name: "Linkin Park"},
-        {name: "David Bowie"},
-        {name: "RHCP"},
-        {name: "Daft Punk"}
-      ]
+      artists: []
     }
+  },
+  mounted: function () {
+    const self = this
+    getArtists()
+      .then(function (artists) {
+        self.artists = artists
+      })
   }
 }
 </script>
